@@ -29,10 +29,14 @@ addBtn.addEventListener('click', function() {
     remove.classList.add('remove');
     remove.innerHTML = removeIcon;
 
+    remove.addEventListener('click', removeTask);
+
     // 完了ボタン
     let done = document.createElement('button');
     done.classList.add('done');
     done.innerHTML = doneIcon;
+
+    done.addEventListener('click', doneTask);
 
     // divにボタンを追加
     buttons.appendChild(remove);
@@ -44,3 +48,17 @@ addBtn.addEventListener('click', function() {
     // liを追加
     notYetUl.insertBefore(li, notYetUl.firstChild);
 });
+
+// タスクを削除する
+function removeTask() {
+    let task = this.parentElement.parentElement
+    task.remove()
+}
+
+function doneTask() {
+    // 移動させるliを取得
+    let task = this.parentElement.parentElement;
+
+    let doneUl = document.getElementById('done');
+    doneUl.insertBefore(task, doneUl.firstChild);
+}
