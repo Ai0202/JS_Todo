@@ -18,6 +18,8 @@ addBtn.addEventListener('click', function() {
 
     // liを追加
     notYetUl.insertBefore(li, notYetUl.firstChild);
+
+    inputTask.value = '';
 });
 
 // タスクを削除する
@@ -50,17 +52,11 @@ function createNewTaskLi(taskText) {
 
     // buttonの作成
     // 削除ボタン
-    let remove = document.createElement('button');
-    remove.classList.add('remove');
-    remove.innerHTML = removeIcon;
-
+    let remove = createButton("remove", removeIcon);
     remove.addEventListener('click', removeTask);
 
     // 完了ボタン
-    let done = document.createElement('button');
-    done.classList.add('done');
-    done.innerHTML = doneIcon;
-
+    let done = createButton("done", doneIcon);
     done.addEventListener('click', doneTask);
 
     // divにボタンを追加
@@ -71,4 +67,18 @@ function createNewTaskLi(taskText) {
     li.appendChild(buttons);
 
     return li;
+}
+
+// buttonを作成する
+function createButton(cssClass, innerHTML) {
+    // buttonの作成
+    let button = document.createElement('button');
+
+    // cssクラスの追加
+    button.classList.add(cssClass);
+
+    // buttonに中身のHTMLの追加
+    button.innerHTML = innerHTML;
+
+    return button;
 }
